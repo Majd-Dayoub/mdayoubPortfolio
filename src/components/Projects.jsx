@@ -6,20 +6,26 @@ const projectsData = [
   {
     image: imagePool,
     title: "Pool Simulator",
-    description: "lorem asdl asdasdj sdsajdas d",
+    description: "Full-stack web application to simulate an 8-ball pool game",
     technologies: ["Python", "Javascript", "HTML", "CSS", "SQL"],
+    liveDemo: "",
+    repository: "https://github.com/Majd-Dayoub/FullStackPoolSimulator"
   },
   {
     image: imageSorting,
     title: "Algorithm Sorting Visualizer",
-    description: "lorem asdl asdasdj sdsajdas d",
+    description: "Interactive web application for visualizing sorting algorithms",
     technologies: ["React", "Bootstrap"],
+    liveDemo: "https://majd-dayoub.github.io/SortingVisualizer/",
+    repository: "https://github.com/Majd-Dayoub/SortingVisualizer"
   },
   {
     image: imageMancala,
     title: "Mancala",
-    description: "lorem asdl asdasdj sdsajdas d",
+    description: "Mancala board game created entirley with Java",
     technologies: ["Java", "JUnit"],
+    liveDemo: "",
+    repository: "https://github.com/Majd-Dayoub/Mancala"
   },
 ];
 
@@ -52,10 +58,32 @@ const ProjectCard = ({ project }) => {
           </div>
           <div className="flex flex-wrap gap-5">
             {project.technologies.map((tech, index) => (
-              <span key={index} className="rounded-lg bg-black p-3">
+              <span key={index} className="rounded-lg bg-slate-800 p-2">
                 {tech}
               </span>
             ))}
+          </div>
+          <div className="flex gap-4 mt-4">
+            {project.liveDemo && (
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 text-sm font-semibold text-white bg-purple-600 rounded-lg hover:bg-purple-700"
+              >
+                Live Demo
+              </a>
+            )}
+            {project.repository && (
+              <a
+                href={project.repository}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 text-sm font-semibold text-white bg-purple-600 rounded-lg hover:bg-purple-700"
+              >
+                Repository
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -66,7 +94,7 @@ const ProjectCard = ({ project }) => {
 const Projects = () => {
   return (
     <div
-      id="rojects"
+      id="projects"
       className="flex min-h-screen w-full flex-col items-center gap-16 p-4 md:px-14 md:py-24"
     >
       <ScrollReveal>
@@ -85,3 +113,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

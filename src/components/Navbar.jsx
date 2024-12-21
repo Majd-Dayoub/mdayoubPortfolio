@@ -39,6 +39,12 @@ const Navbar = () => {
           <li>Tech</li>
         </a>
         <a
+          href="#experience"
+          className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
+        >
+          <li>Experience</li>
+        </a>
+        <a
           href="#projects"
           className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
         >
@@ -55,12 +61,14 @@ const Navbar = () => {
       {/*Contact List*/}
       <ul className="hidden md:flex gap-5">
         <li className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-blue-500">
-          {" "}
-          <BsLinkedin />
+          <a href="https://www.linkedin.com/in/majddayoub">
+            <BsLinkedin />
+          </a>
         </li>
         <li className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-orange-500">
-          {" "}
-          <BsGithub />
+          <a href="https://github.com/Majd-Dayoub">
+            <BsGithub />
+          </a>
         </li>
       </ul>
       {isOpen ? (
@@ -90,6 +98,12 @@ const Navbar = () => {
               <li>Tech</li>
             </a>
             <a
+              href="#experience"
+              className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
+            >
+              <li>Experience</li>
+            </a>
+            <a
               href="#projects"
               className="cursor-pointer opacity-70 transition-all duration-300 hover:opacity-100"
             >
@@ -106,12 +120,14 @@ const Navbar = () => {
           {/*Contact List*/}
           <ul className="flex flex-wrap gap-5">
             <li className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-blue-500">
-              {" "}
-              <BsLinkedin />
+              <a href="https://www.linkedin.com/in/majddayoub">
+                <BsLinkedin />
+              </a>
             </li>
             <li className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-orange-500">
-              {" "}
-              <BsGithub />
+              <a href="https://github.com/Majd-Dayoub">
+                <BsGithub />
+              </a>
             </li>
           </ul>
         </div>

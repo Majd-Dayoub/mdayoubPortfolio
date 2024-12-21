@@ -9,60 +9,56 @@ import {
   BiLogoTypescript,
 } from "react-icons/bi";
 import { TbBrandCSharp } from "react-icons/tb";
-import {motion} from "framer-motion";
-const Tech = () => {
+import { motion } from "framer-motion";
 
+const Tech = () => {
   const variants = {
-    hidden:{opacity:0, y:50},
-    visible:{opacity:1, y:0}
-  }
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const techItems = [
+    { icon: <BiLogoTypescript className="text-sky-500" />, label: "TypeScript" },
+    { icon: <BiLogoJavascript className="text-orange-500" />, label: "JavaScript" },
+    { icon: <BiLogoTailwindCss className="text-sky-400" />, label: "Tailwind CSS" },
+    { icon: <BiLogoNodejs className="text-green-600" />, label: "Node.js" },
+    { icon: <BiLogoBootstrap className="text-purple-500" />, label: "Bootstrap" },
+    { icon: <BiLogoPython className="text-yellow-500" />, label: "Python" },
+    { icon: <BiLogoJava className="text-orange-500" />, label: "Java" },
+    { icon: <TbBrandCSharp className="text-white" />, label: "C#" },
+  ];
 
   return (
     <div
       id="tech"
-      className="flex min-h-[70h] w-full flex-col items-center jusitfy-center gap-16 md:gap-32"
+      className="flex min-h-[70vh] w-full flex-col items-center justify-center gap-16 md:gap-32"
     >
-      <motion.h1 
-      variants={variants}
-      initial="hidden"
-      whileInView="visible"
-      transition={{duration:0.5}}
-      className="text-4xl font-light text-white md:text-6xl">
+      <motion.h1
+        variants={variants}
+        initial="hidden"
+        whileInView="visible"
+        transition={{ duration: 0.5 }}
+        className="text-4xl font-light text-white md:text-6xl"
+      >
         Technologies
       </motion.h1>
 
       <div className="flex flex-wrap items-center justify-center gap-10 p-5">
-        <motion.div>
-          <BiLogoTypescript className="cursor-pointer text-[80px] text-sky-500 transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
-
-        <motion.div>
-          <BiLogoJavascript className="cursor-pointer text-[80px] text-orange-500 transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
-
-        <motion.div>
-          <BiLogoTailwindCss className="cursor-pointer text-[80px] text-sky-400 transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
-
-        <motion.div>
-          <BiLogoNodejs className="cursor-pointer text-[80px] text-green-600 transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
-
-        <motion.div>
-          <BiLogoBootstrap className="cursor-pointer text-[80px] text-purple-500 transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
-
-        <motion.div>
-          <BiLogoPython className="cursor-pointer text-[80px] text-yellow-500 transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
-
-        <motion.div>
-          <BiLogoJava className="cursor-pointer text-[80px] text-orange-500 transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
-
-        <motion.div>
-          <TbBrandCSharp className="cursor-pointer text-[80px] text-white transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]" />
-        </motion.div>
+        {techItems.map((tech, index) => (
+          <motion.div
+            key={index}
+            className="flex flex-col items-center"
+            variants={variants}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <div className="cursor-pointer text-[80px] transition-all duration-300 hover:-translate-y-5 sm:text-[100px] md:text-[120px]">
+              {tech.icon}
+            </div>
+            <p className="mt-2 text-sm text-white">{tech.label}</p>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
