@@ -2,7 +2,7 @@ import { div } from "motion/react-client";
 import { useState } from "react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { BiMenu, BiX } from "react-icons/bi";
-
+import logo from "/public/mdayoub-logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,9 +14,14 @@ const Navbar = () => {
     <nav className="fixed top-0 z-10 flex w-full items-center justify-between border-b border-b-gray-700 bg-black/70 py-6 text-white backdrop-blur-md md:justify-evenly">
       <a
         href="#home"
-        className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent opacity-80 text-3xl font-semibold transition-all duration-300 hover:opacity-100"
+        className="flex items-center gap-3 bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent opacity-80 text-3xl font-semibold transition-all duration-300 hover:opacity-100"
       >
-        mdayoub
+        <img
+          src={logo}
+          alt="logo"
+          className=" mr- w-[60px] cursor-pointer rounded-full shadow-xl shadow-indigo-900 transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-600"
+        />
+        Majd Dayoub
       </a>
 
       {/*Navbar List*/}
@@ -70,7 +75,7 @@ const Navbar = () => {
             isOpen ? "block" : "hidden"
           }`}
         >
-           {/*NavBar List*/}
+          {/*NavBar List*/}
           <ul className="flex flex-col gap-8">
             <a
               href="#home"
