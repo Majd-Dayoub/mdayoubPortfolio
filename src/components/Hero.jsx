@@ -32,7 +32,7 @@ const Hero = () => {
             I am a third-year Computer Science student with experience in
             full-stack development. I am skilled in back-end technologies like
             C#, SQL, and Express.js, as well as front-end frameworks and tools
-            including Tailwind CSS, Bootstrap, and React.
+            including React, Tailwind CSS, Bootstrap.
           </p>
         </motion.div>
       </div>
