@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import mhicaLogo from "/public/mhica-logo.png";
+import mhwLogo from "/public/mhw-logo.png";
 
 const experienceData = [
   {
     company: "Mitsubishi Heavy Industries Aerospace Inc.",
-    logo: "/public/mhica-logo.png",
+    logo: mhicaLogo,
     role: "Software Engineer Intern",
     period: "May 2024 – January 2025",
     location: "Toronto, Canada",
@@ -18,7 +20,7 @@ const experienceData = [
   },
   {
     company: "MHWMechanical Inc.",
-    logo: "/public/mhw-logo.png",
+    logo: mhwLogo,
     role: "Web Developer",
     period: "May 2023 – September 2023",
     location: "Toronto, Canada",
