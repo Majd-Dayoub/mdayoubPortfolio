@@ -1,3 +1,5 @@
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+
 const Contact = () => {
   return (
     <div
@@ -10,6 +12,25 @@ const Contact = () => {
             Get In Touch
           </span>
         </h1>
+        <div className="flex justify-between items-center gap-5">
+          <a
+            href="https://www.linkedin.com/in/majddayoub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-amber-50 text-blue-500"
+          >
+            <BsLinkedin className="w-28 h-28 md:w-28 md:h-28 sm:w-16 sm:h-16" />
+          </a>
+
+          <a
+            href="https://github.com/Majd-Dayoub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-amber-50 text-orange-600"
+          >
+            <BsGithub className="w-28 h-28 md:w-28 md:h-28 sm:w-16 sm:h-16" />
+          </a>
+        </div>
 
         <p className="text-center text-lg font-semibold text-gray-500">
           Want to connect? Send me an E-mail and I'll respond as soon as

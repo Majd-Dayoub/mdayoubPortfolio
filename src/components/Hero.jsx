@@ -25,7 +25,7 @@ const Hero = () => {
           <h1 className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent opacity-80 text-5xl md:text-7xl font-light">
             Majd Dayoub
           </h1>
-          <h3 className="bg-gradient-to-r to-pink-500 from-blue-500 bg-clip-text text-transparent opacity-80 text-5xl md:text-4xl font-light">
+          <h3 className="bg-gradient-to-r to-pink-500 from-blue-500 bg-clip-text text-transparent opacity-80 text-2xl md:text-4xl font-light">
             Software Engineer Intern
           </h3>
           <p className="md:text-base text-pretty text-sm text-gray-400 ">
