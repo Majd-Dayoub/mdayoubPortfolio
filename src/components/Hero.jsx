@@ -1,4 +1,4 @@
-import logo from "/public/mdayoub-logo.png";
+import logo from "/mdayoub-logo.png";
 import { motion } from "framer-motion";
 const Hero = () => {
   return (

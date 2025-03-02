@@ -2,7 +2,7 @@ import { div } from "motion/react-client";
 import { useState } from "react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { BiMenu, BiX } from "react-icons/bi";
-import logo from "/public/mdayoub-logo.png";
+import logo from "/mdayoub-logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 

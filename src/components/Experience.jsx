@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import mhicaLogo from "/public/mhica-logo.png";
-import mhwLogo from "/public/mhw-logo.png";
+import mhicaLogo from "/mhica-logo.png";
+import mhwLogo from "/mhw-logo.png";
 
 const experienceData = [
   {

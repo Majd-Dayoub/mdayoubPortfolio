@@ -1,6 +1,6 @@
-import imagePool from "/public/pool-image.png";
-import imageSorting from "/public/sorting-image.png";
-import imageMancala from "/public/mancala-image.png";
+import imagePool from "/pool-image.png";
+import imageSorting from "/sorting-image.png";
+import imageMancala from "/mancala-image.png";
 import { motion } from "framer-motion";
 const projectsData = [
   {
