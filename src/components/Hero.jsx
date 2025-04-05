@@ -1,4 +1,5 @@
 import logo from "/mdayoub-logo.png";
+import AnimatedTitle from "./AnimatedTitle";
 import { motion } from "framer-motion";
 const Hero = () => {
   return (
@@ -8,9 +9,9 @@ const Hero = () => {
     >
       <div className="flex flex-col items-center justify-center gap-10 text-white">
         <motion.div
-          initial={{y:-50, opacity:0}}
-          animate ={{y:0, opacity:1}}
-          transition={{ duration:0.8, delay:0.2}}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
           <img
             src={logo}
@@ -19,20 +20,23 @@ const Hero = () => {
           />
         </motion.div>
 
-        <motion.div initial={{y:50, opacity:0}}
-          animate ={{y:0, opacity:1}}
-          transition={{ duration:0.8, delay:0.2}} className="flex max-w-[600px] flex-col items-center justify-center gap-3 text-center">
-          <h1 className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent opacity-80 text-5xl md:text-7xl font-light">
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex max-w-[600px] flex-col items-center justify-center gap-3 text-center"
+        >
+          <h1 className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent opacity-80 text-5xl md:text-7xl font-light ">
             Majd Dayoub
           </h1>
-          <h3 className="bg-gradient-to-r to-pink-500 from-blue-500 bg-clip-text text-transparent opacity-80 text-2xl md:text-4xl font-light">
-            Software Engineer Intern
-          </h3>
-          <p className="md:text-base text-pretty text-sm text-gray-400 ">
-            I am a third-year Computer Science student with experience in
-            full-stack development. I am skilled in back-end technologies like
-            C#, SQL, and Express.js, as well as front-end frameworks and tools
-            including React, Tailwind CSS, Bootstrap.
+          <AnimatedTitle />
+          <p className="md:text-base text-pretty text-sm text-gray-400 mt-5">
+            I am a third-year Computer Science student passionate about Cloud
+            and Software Engineering. I have hands-on experience with AWS,
+            Azure, SQL, Excel, Power BI, and full-stack development using
+            Python, C#, React, and SQL. Through internships and projects, I've
+            built scalable cloud solutions, developed internal web apps, and
+            contributed to operational data analysis and process automation.
           </p>
         </motion.div>
       </div>

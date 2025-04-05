@@ -2,13 +2,28 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import mhicaLogo from "/mhica-logo.png";
 import mhwLogo from "/mhw-logo.png";
+import purolatorLogo from "/purolator.png";
 
 const experienceData = [
   {
+    company: "Purolator Inc.",
+    logo: purolatorLogo,
+    role: "Data Engineer Co-op",
+    period: "May 2025 – August 2025",
+    location: "Toronto, Canada",
+    responsibilities: [
+      "Developed and maintained scalable ETL pipelines using SQL and Python, automating data integration from multiple sources and reducing data processing time by 40%.",
+      "Designed and deployed cloud-based data solutions on AWS, leveraging services such as S3 and Lambda to enhance data availability and performance.",
+      "Built interactive Power BI dashboards to visualize operational metrics, integrating data from cloud storage and improving data-driven decision-making processes by 30%.",
+      "Performed complex data transformations and analysis using SQL and Python, generating insights that optimized logistics planning and resource allocation.",
+      "Collaborated with data engineering and software development teams to implement API integrations, streamlining data flow between internal applications and data warehouses.",
+    ],
+  },
+  {
     company: "Mitsubishi Heavy Industries Aerospace Inc.",
     logo: mhicaLogo,
-    role: "Software Engineer Intern",
-    period: "May 2024 – January 2025",
+    role: "Software Engineer Co-op",
+    period: "May 2024 – December 2024",
     location: "Toronto, Canada",
     responsibilities: [
       "Designed and implemented key features for an aircraft scheduling application using C#, .NET, and Bootstrap, enhancing operational efficiency by 30% and improving overall performance.",
@@ -19,7 +34,7 @@ const experienceData = [
     ],
   },
   {
-    company: "MHWMechanical Inc.",
+    company: "MHW Mechanical Inc.",
     logo: mhwLogo,
     role: "Web Developer",
     period: "May 2023 – September 2023",
@@ -49,59 +64,72 @@ const ExperienceCard = ({ experience }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <ScrollReveal>
-      <div className="flex flex-col gap-4 p-6 rounded-lg shadow-lg border border-purple-700 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700">
-        <div
-          className="flex justify-between items-center cursor-pointer"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col gap-4 p-6 rounded-xl shadow-lg border border-purple-700 bg-gradient-to-br from-purple-800 via-purple-700 to-purple-600 hover:from-purple-700 hover:to-purple-500"
+    >
+      <div
+        className="flex justify-between items-center cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="flex items-center gap-4">
+          <img
+            src={experience.logo}
+            alt={`${experience.company} logo`}
+            className="w-16 h-16 rounded-full border-2 border-purple-300"
+          />
           <div>
-            <h3 className="text-xl font-semibold text-white flex items-center gap-2">
+            <h3 className="text-2xl font-bold text-white">
               {experience.role}
-              <img
-                src={experience.logo}
-                alt={`${experience.company} logo`}
-                className="w-14 h-14"
-              />
             </h3>
             <h4 className="text-lg text-purple-300">{experience.company}</h4>
-            <p className="text-sm text-purple-200 font-medium">
-              {experience.period}
-            </p>
+            <p className="text-sm text-purple-200">{experience.period}</p>
             <p className="text-sm text-purple-200">{experience.location}</p>
           </div>
-          <motion.div
-            initial={{ rotate: 0 }}
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 text-purple-300"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </motion.div>
         </div>
-        {isOpen && (
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-purple-200">
+        <motion.div
+          initial={{ rotate: 0 }}
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-8 h-8 text-purple-300 hover:text-white transition-colors"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+            />
+          </svg>
+        </motion.div>
+      </div>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className="mt-4 bg-purple-900 bg-opacity-50 p-4 rounded-md"
+        >
+          <ul className="list-disc space-y-2 pl-5 text-purple-100">
             {experience.responsibilities.map((task, index) => (
-              <li key={index}>{task}</li>
+              <li key={index} className="text-sm leading-relaxed">
+                {task}
+              </li>
             ))}
           </ul>
-        )}
-      </div>
-    </ScrollReveal>
+        </motion.div>
+      )}
+    </motion.div>
   );
 };
+
 
 const Experience = () => {
   return (
