@@ -1,5 +1,4 @@
 import logo from "/mdayoub-logo.png";
-import AnimatedTitle from "./AnimatedTitle";
 import { motion } from "framer-motion";
 const Hero = () => {
   return (
@@ -29,7 +28,11 @@ const Hero = () => {
           <h1 className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent opacity-80 text-5xl md:text-7xl font-light ">
             Majd Dayoub
           </h1>
-          <AnimatedTitle />
+          <h3 className="text-3xl md:text-4xl font-semibold leading-normal inline-block py-1 transition-all duration-500 ease-in-out transform opacity-80">
+            <span className="bg-gradient-to-r from-pink-500 to-blue-500  bg-clip-text text-transparent">
+             Software Engineer
+            </span>
+          </h3>{" "}
           <p className="md:text-base text-pretty text-sm text-gray-400 mt-5">
             I am a third-year Computer Science student passionate about Cloud
             and Software Engineering. I have hands-on experience with AWS,

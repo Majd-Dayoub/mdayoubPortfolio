@@ -7,8 +7,10 @@ import {
   BiLogoPython,
   BiLogoTailwindCss,
   BiLogoTypescript,
+  BiLogoAws
 } from "react-icons/bi";
-import { TbBrandCSharp } from "react-icons/tb";
+import { TbBrandCSharp} from "react-icons/tb";
+import { FaDatabase } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const Tech = () => {
@@ -19,13 +21,12 @@ const Tech = () => {
 
   const techItems = [
     { icon: <BiLogoTypescript className="text-sky-500" />, label: "TypeScript" },
-    { icon: <BiLogoJavascript className="text-orange-500" />, label: "JavaScript" },
-    { icon: <BiLogoTailwindCss className="text-sky-400" />, label: "Tailwind CSS" },
     { icon: <BiLogoNodejs className="text-green-600" />, label: "Node.js" },
-    { icon: <BiLogoBootstrap className="text-purple-500" />, label: "Bootstrap" },
     { icon: <BiLogoPython className="text-yellow-500" />, label: "Python" },
-    { icon: <BiLogoJava className="text-orange-500" />, label: "Java" },
+    { icon: <BiLogoAws className="text-orange-500" />, label: "AWS" },
+    { icon: <FaDatabase className="text-blue-500" />, label: "SQL" },
     { icon: <TbBrandCSharp className="text-white" />, label: "C#" },
+
   ];
 
   return (
