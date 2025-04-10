@@ -8,12 +8,11 @@ const experienceData = [
   {
     company: "Purolator Inc.",
     logo: purolatorLogo,
-    role: "Data Engineer Co-op",
+    role: "Business Data Analyst Co-op",
     period: "May 2025 – August 2025",
     location: "Toronto, Canada",
     responsibilities: [
       "Developed and maintained scalable ETL pipelines using SQL and Python, automating data integration from multiple sources and reducing data processing time by 40%.",
-      "Designed and deployed cloud-based data solutions on AWS, leveraging services such as S3 and Lambda to enhance data availability and performance.",
       "Built interactive Power BI dashboards to visualize operational metrics, integrating data from cloud storage and improving data-driven decision-making processes by 30%.",
       "Performed complex data transformations and analysis using SQL and Python, generating insights that optimized logistics planning and resource allocation.",
       "Collaborated with data engineering and software development teams to implement API integrations, streamlining data flow between internal applications and data warehouses.",

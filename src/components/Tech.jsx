@@ -24,7 +24,7 @@ const Tech = () => {
     { icon: <BiLogoNodejs className="text-green-600" />, label: "Node.js" },
     { icon: <BiLogoPython className="text-yellow-500" />, label: "Python" },
     { icon: <BiLogoAws className="text-orange-500" />, label: "AWS" },
-    { icon: <FaDatabase className="text-blue-500" />, label: "SQL" },
+    { icon: <FaDatabase className="text-blue-500 " />, label: "SQL" },
     { icon: <TbBrandCSharp className="text-white" />, label: "C#" },
 
   ];
