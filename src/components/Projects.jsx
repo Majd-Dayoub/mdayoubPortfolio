@@ -2,6 +2,7 @@ import imagePool from "/pool-image.png";
 import imageSorting from "/sorting-image.png";
 import imageMancala from "/mancala-image.png";
 import imageTripbuddy from "/tripbuddyLogo.png";
+import Premierbet from "/Premierbet-image.png";
 
 import {
   BiLogoBootstrap,
@@ -22,10 +23,20 @@ import { motion } from "framer-motion";
 
 const projectsData = [
   {
+    image: Premierbet,
+    title: "Premier Bets",
+    description:
+      "Web application that allows users to generate personalized travel itineraries and receive AI-driven trip advice",
+    technologies: ["Node.js", "React", "Tailwind CSS", "Supabase"],
+    icons: [BiLogoNodejs, BiLogoReact, BiLogoTailwindCss, BiLogoPostgresql],
+    liveDemo: "",
+    repository: "https://github.com/Majd-Dayoub/premier-bets",
+  },
+  {
     image: imageTripbuddy,
     title: "Trip Buddy",
     description:
-      "Web application that allows users to generate personalized travel itineraries and receive AI-driven trip advice",
+      "A full-stack sports betting simulator using React and Node.js that enables users to place wagers with virtual currency on Premier League matches using real football data",
     technologies: [
       "React",
       "Node.js",

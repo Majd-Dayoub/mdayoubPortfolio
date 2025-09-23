@@ -8,14 +8,14 @@ const experienceData = [
   {
     company: "Purolator Inc.",
     logo: purolatorLogo,
-    role: "Business Data Analyst Co-op",
+    role: "Data Engineer Co-op",
     period: "May 2025 – August 2025",
     location: "Toronto, Canada",
     responsibilities: [
-      "Developed and maintained scalable ETL pipelines using SQL and Python, automating data integration from multiple sources and reducing data processing time by 40%.",
-      "Built interactive Power BI dashboards to visualize operational metrics, integrating data from cloud storage and improving data-driven decision-making processes by 30%.",
-      "Performed complex data transformations and analysis using SQL and Python, generating insights that optimized logistics planning and resource allocation.",
-      "Collaborated with data engineering and software development teams to implement API integrations, streamlining data flow between internal applications and data warehouses.",
+      "Built and maintained ETL pipelines using Python, SQL and Pandas to integrate and transform multi-source data into analysis-ready datasets, supporting actionable insights.",
+      "Deployed Python scripts using Azure Functions and SQL Database, automating weekly data refreshes and eliminating 5+ hours of manual work weekly.",
+      "Implemented automated reporting pipelines using Python to pull data from QlikView via REST APIs and generate reports, eliminating 8+ hours of manual work weekly.",
+      "Engineered complex data transformations on 1M+ records weekly, delivering insights that guided logistics planning and optimized resource allocation",
     ],
   },
   {
@@ -79,9 +79,7 @@ const ExperienceCard = ({ experience }) => {
             className="w-16 h-16 rounded-full border-2 border-purple-300"
           />
           <div>
-            <h3 className="text-2xl font-bold text-white">
-              {experience.role}
-            </h3>
+            <h3 className="text-2xl font-bold text-white">{experience.role}</h3>
             <h4 className="text-lg text-purple-300">{experience.company}</h4>
             <p className="text-sm text-purple-200">{experience.period}</p>
             <p className="text-sm text-purple-200">{experience.location}</p>
@@ -128,7 +126,6 @@ const ExperienceCard = ({ experience }) => {
     </motion.div>
   );
 };
-
 
 const Experience = () => {
   return (
