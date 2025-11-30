@@ -106,25 +106,33 @@ const ScrollReveal = ({ children }) => {
 const ProjectCard = ({ project }) => {
   return (
     <ScrollReveal>
-      <div className="flex flex-col items-center gap-8 md:flex-row md:gap-24">
+      <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-24">
+        
+        {/* FIXED SIZE IMAGE CONTAINER */}
         <img
           src={project.image}
           alt=""
-          className="w-full cursor-pointer rounded-2xl transition-all duration-300 hover:scale-105 md:w-[240px] md:h-[160px]"
+          className="w-[300px] h-[160px] object-contain object-center bg-black/20 rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:scale-105"
         />
+
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-3">
             <div className="text-xl font-semibold">{project.title}</div>
             <p className="text-gray-400">{project.description}</p>
           </div>
+
           <div className="flex flex-wrap gap-5">
             {project.icons.map((Icon, index) => (
-              <div className="cursor-pointer flex items-center gap-1 p-2 bg-slate-800 rounded-full transition-all duration-300 hover:scale-110">
+              <div 
+                key={index}
+                className="cursor-pointer flex items-center gap-1 p-2 bg-slate-800 rounded-full transition-all duration-300 hover:scale-110"
+              >
                 <Icon className="text-white text-xl" />
                 {project.technologies[index]}
               </div>
             ))}
           </div>
+
           <div className="flex gap-4 mt-4">
             {project.liveDemo && (
               <a
@@ -152,6 +160,7 @@ const ProjectCard = ({ project }) => {
     </ScrollReveal>
   );
 };
+
 
 const Projects = () => {
   return (
