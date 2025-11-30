@@ -31,19 +31,7 @@ const experienceData = [
       "Created and automated workflows using Power Apps and Power Automate to streamline business processes, reducing manual effort and increasing operational efficiency.",
       "Authored and maintained documentation for software projects using Confluence, and managed version control with Git.",
     ],
-  },
-  {
-    company: "MHW Mechanical Inc.",
-    logo: mhwLogo,
-    role: "Web Developer",
-    period: "May 2023 – September 2023",
-    location: "Toronto, Canada",
-    responsibilities: [
-      "Collaborated with a team in expanding website functionality and enhancing design responsiveness using WordPress, HTML, and CSS.",
-      "Ensured the website remained up to date by regularly updating content, adding promotional pages, and integrating new features to enhance user engagement.",
-      "Analyzed and visualized data in Excel, generating reports that guided marketing and web development decisions.",
-    ],
-  },
+  }
 ];
 
 const ScrollReveal = ({ children }) => {
@@ -59,71 +47,116 @@ const ScrollReveal = ({ children }) => {
   );
 };
 
-const ExperienceCard = ({ experience }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const ExperienceCard = ({ experience, index, isLast, defaultOpen = false }) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  const visibleResponsibilities = isOpen
+    ? experience.responsibilities
+    : experience.responsibilities.slice(0, 2);
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-      className="flex flex-col gap-4 p-6 rounded-xl shadow-lg border border-purple-700 bg-gradient-to-br from-purple-800 via-purple-700 to-purple-600 hover:from-purple-700 hover:to-purple-500"
-    >
-      <div
-        className="flex justify-between items-center cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <div className="flex items-center gap-4">
-          <img
-            src={experience.logo}
-            alt={`${experience.company} logo`}
-            className="w-16 h-16 rounded-full border-2 border-purple-300"
-          />
-          <div>
-            <h3 className="text-2xl font-bold text-white">{experience.role}</h3>
-            <h4 className="text-lg text-purple-300">{experience.company}</h4>
-            <p className="text-sm text-purple-200">{experience.period}</p>
-            <p className="text-sm text-purple-200">{experience.location}</p>
-          </div>
-        </div>
-        <motion.div
-          initial={{ rotate: 0 }}
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="w-8 h-8 text-purple-300 hover:text-white transition-colors"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-            />
-          </svg>
-        </motion.div>
+    <div className="relative flex gap-6">
+      {/* Timeline dot and connector */}
+      <div className="flex flex-col items-center">
+        <div className="w-4 h-4 rounded-full bg-purple-400 ring-4 ring-purple-900/70 shadow-lg shadow-purple-500/40" />
+        {!isLast && (
+          <div className="mt-1 w-px flex-1 bg-gradient-to-b from-purple-500/60 via-purple-700/40 to-transparent" />
+        )}
       </div>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="mt-4 bg-purple-900 bg-opacity-50 p-4 rounded-md"
-        >
-          <ul className="list-disc space-y-2 pl-5 text-purple-100">
-            {experience.responsibilities.map((task, index) => (
-              <li key={index} className="text-sm leading-relaxed">
-                {task}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      )}
-    </motion.div>
+
+      {/* Card */}
+      <motion.div
+        whileHover={{ scale: 1.02, translateY: -2 }}
+        transition={{ duration: 0.25 }}
+        className="group relative w-full"
+      >
+        {/* Glow border */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500 via-fuchsia-500 to-sky-500 opacity-40 blur-xl group-hover:opacity-70 transition-opacity pointer-events-none" />
+
+        <div className="relative z-10 rounded-2xl border border-purple-600/70 bg-gradient-to-br from-purple-900/80 via-purple-950/90 to-slate-950/90 p-5 md:p-6 shadow-xl shadow-black/50">
+          {/* Header */}
+          <button
+            type="button"
+            className="flex w-full justify-between items-start gap-4 cursor-pointer"
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            <div className="flex items-center gap-4 text-left">
+              <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-purple-500/50 blur-md group-hover:blur-lg transition-all" />
+                <img
+                  src={experience.logo}
+                  alt={`${experience.company} logo`}
+                  className="relative w-20 h-20 rounded-full border-2 border-purple-300/80 bg-slate-950 object-contain p-1"
+                />
+              </div>
+              <div>
+                <h3 className="mt-1 text-xl md:text-2xl font-semibold text-white">
+                  {experience.role}
+                </h3>
+                <h4 className="text-sm md:text-base text-purple-200/90">
+                  {experience.company}
+                </h4>
+                <div className="mt-2 flex flex-wrap gap-2 text-xs md:text-sm">
+                  <span className="rounded-full bg-purple-900/70 border border-purple-500/50 px-3 py-1 text-purple-100">
+                    {experience.period}
+                  </span>
+                  <span className="rounded-full bg-slate-900/80 border border-purple-500/40 px-3 py-1 text-purple-100">
+                    {experience.location}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ rotate: 0 }}
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="mt-1 shrink-0 rounded-full bg-purple-900/70 border border-purple-500/70 p-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-6 h-6 text-purple-200"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </motion.div>
+          </button>
+
+          {/* Body */}
+          <motion.div
+            initial={false}
+            animate={{ height: "auto", opacity: 1 }}
+            transition={{ duration: 0.25 }}
+            className="mt-4"
+          >
+            <ul className="list-disc space-y-2 pl-5 text-purple-100 text-sm md:text-[0.9rem] leading-relaxed">
+              {visibleResponsibilities.map((task, idx) => (
+                <li key={idx}>{task}</li>
+              ))}
+            </ul>
+
+            {experience.responsibilities.length > 2 && (
+              <button
+                type="button"
+                onClick={() => setIsOpen((prev) => !prev)}
+                className="mt-3 inline-flex items-center gap-2 text-xs md:text-sm text-purple-200/90 hover:text-white transition-colors"
+              >
+                {isOpen ? "Show less" : "Show full story"}
+                <span className="h-px w-6 bg-purple-300/80" />
+              </button>
+            )}
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -131,18 +164,39 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="flex w-full flex-col items-center gap-16 p-4 md:px-14 md:py-16 mb-8"
+      className="flex w-full flex-col items-center gap-12 p-4 md:px-14 md:py-20 mb-8"
     >
       <ScrollReveal>
-        <h1 className="text-4xl font-light text-purple-200 md:text-6xl">
-          Experience
-        </h1>
+        <div className="flex flex-col items-center gap-3">
+          <span className="text-xs tracking-[0.3em] uppercase text-purple-300/70">
+            Journey
+          </span>
+          <h1 className="text-4xl md:text-6xl font-light text-purple-100">
+            Experience
+          </h1>
+          <p className="max-w-xl text-center text-sm md:text-base text-purple-200/80">
+            A timeline of roles where I have designed systems, automated workflows,
+            and turned data into decisions.
+          </p>
+        </div>
       </ScrollReveal>
 
-      <div className="flex flex-col gap-12 w-full max-w-[800px]">
-        {experienceData.map((experience, index) => (
-          <ExperienceCard key={index} experience={experience} />
-        ))}
+      <div className="relative w-full max-w-3xl md:max-w-4xl">
+        {/* Faint central timeline line */}
+        <div className="absolute left-[0.9rem] md:left-[1.05rem] top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/30 via-purple-900/40 to-transparent pointer-events-none" />
+
+        <div className="flex flex-col gap-10">
+          {experienceData.map((experience, index) => (
+            <ScrollReveal key={index}>
+              <ExperienceCard
+                experience={experience}
+                index={index}
+                isLast={index === experienceData.length - 1}
+                defaultOpen={index === 0}
+              />
+            </ScrollReveal>
+          ))}
+        </div>
       </div>
     </section>
   );
