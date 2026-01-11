@@ -1,49 +1,58 @@
 import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { motion } from "motion/react";
 
 const Contact = () => {
   return (
-    <div
+    <section
       id="contact"
-      className="flex min-h-[70vh] min-w-full items-center justify-center"
+      className="flex min-h-[50vh] min-w-full items-center justify-center py-20 px-4"
     >
-      <div className="flex flex-col items-center justify-center gap-3 space-y-6 p-14">
-        <h1 className="text-center text-5xl md:text-7xl">
-          <span className="bg-gradient-to-r from-indigo-500 to-blue-500 bg-clip-text text-transparent">
-            Get In Touch
-          </span>
-        </h1>
-        <div className="flex justify-between items-center gap-5">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="glass w-full max-w-[600px] flex flex-col items-center justify-center gap-6 p-10 md:p-14 rounded-3xl border-white/10 bg-black/40 text-center relative overflow-hidden"
+      >
+        {/* Background Gradients */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/20 blur-[80px] -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/20 blur-[80px] -z-10"></div>
+
+        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent">
+          Get In Touch
+        </h2>
+
+        <p className="text-lg text-gray-400 max-w-sm">
+          Want to connect? Send me an email and I'll respond as soon as possible.
+        </p>
+
+        <a
+          href="mailto:mdayoub@uoguelph.ca"
+          className="px-8 py-3 rounded-full bg-white text-black font-semibold text-lg hover:bg-gray-200 transition-all shadow-lg shadow-white/10 hover:shadow-white/20 hover:-translate-y-1"
+        >
+          Contact Me
+        </a>
+        
+        <div className="flex gap-6 mt-4">
           <a
             href="https://www.linkedin.com/in/majddayoub"
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-amber-50 text-blue-500"
+            className="text-gray-400 hover:text-blue-500 transition-colors"
           >
-            <BsLinkedin className="w-28 h-28 md:w-28 md:h-28 sm:w-16 sm:h-16" />
+            <BsLinkedin size={32} />
           </a>
-
           <a
             href="https://github.com/Majd-Dayoub"
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer text-xl opacity-70 transition-all duration-300 hover:text-amber-50 text-orange-600"
+            className="text-gray-400 hover:text-purple-500 transition-colors"
           >
-            <BsGithub className="w-28 h-28 md:w-28 md:h-28 sm:w-16 sm:h-16" />
+            <BsGithub size={32} />
           </a>
         </div>
-
-        <p className="text-center text-lg font-semibold text-gray-500">
-          Want to connect? Send me an E-mail and I'll respond as soon as
-          possible.
-        </p>
-        <a
-          href="mailto:mdayoub@uoguelph.ca"
-          className="text-nowrap rounded-lg border border-indigo-600 bg-black px-5 py-3 text-lg font-bold text-white shadow-lg shadow-indigo-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-600"
-        >
-          Contact Me
-        </a>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 };
 

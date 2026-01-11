@@ -1,14 +1,13 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useState } from "react";
 import mhicaLogo from "/mhica-logo.png";
-import mhwLogo from "/mhw-logo.png";
 import purolatorLogo from "/purolator.png";
 
 const experienceData = [
   {
     company: "Purolator Inc.",
     logo: purolatorLogo,
-    role: "Data Engineer Co-op",
+    role: "Software Engineer Co-op",
     period: "May 2025 – August 2025",
     location: "Toronto, Canada",
     responsibilities: [
@@ -28,175 +27,98 @@ const experienceData = [
       "Designed and implemented key features for an aircraft scheduling application using C#, .NET, and Bootstrap, enhancing operational efficiency by 30% and improving overall performance.",
       "Implemented unit tests in C#, achieving 100% code coverage for my contributions and proactively identifying critical bugs, reducing production issues.",
       "Developed and optimized SQL scripts, improving data retrieval efficiency by 25% and enhancing reporting accuracy.",
-      "Created and automated workflows using Power Apps and Power Automate to streamline business processes, reducing manual effort and increasing operational efficiency.",
       "Authored and maintained documentation for software projects using Confluence, and managed version control with Git.",
     ],
   }
 ];
 
-const ScrollReveal = ({ children }) => {
+const ExperienceCard = ({ exp, index }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      className={`flex flex-col md:flex-row gap-8 items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} relative`}
     >
-      {children}
-    </motion.div>
-  );
-};
-
-const ExperienceCard = ({ experience, index, isLast, defaultOpen = false }) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
-
-  const visibleResponsibilities = isOpen
-    ? experience.responsibilities
-    : experience.responsibilities.slice(0, 2);
-
-  return (
-    <div className="relative flex gap-6">
-      {/* Timeline dot and connector */}
-      <div className="flex flex-col items-center">
-        <div className="w-4 h-4 rounded-full bg-purple-400 ring-4 ring-purple-900/70 shadow-lg shadow-purple-500/40" />
-        {!isLast && (
-          <div className="mt-1 w-px flex-1 bg-gradient-to-b from-purple-500/60 via-purple-700/40 to-transparent" />
-        )}
+      {/* Dot on line */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-purple-500 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.8)] z-10 hidden md:block">
+        <div className="absolute inset-0 animate-ping rounded-full bg-purple-500 opacity-75"></div>
       </div>
 
-      {/* Card */}
-      <motion.div
-        whileHover={{ scale: 1.02, translateY: -2 }}
-        transition={{ duration: 0.25 }}
-        className="group relative w-full"
-      >
-        {/* Glow border */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500 via-fuchsia-500 to-sky-500 opacity-40 blur-xl group-hover:opacity-70 transition-opacity pointer-events-none" />
-
-        <div className="relative z-10 rounded-2xl border border-purple-600/70 bg-gradient-to-br from-purple-900/80 via-purple-950/90 to-slate-950/90 p-5 md:p-6 shadow-xl shadow-black/50">
-          {/* Header */}
-          <button
-            type="button"
-            className="flex w-full justify-between items-start gap-4 cursor-pointer"
-            onClick={() => setIsOpen((prev) => !prev)}
-          >
-            <div className="flex items-center gap-4 text-left">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-purple-500/50 blur-md group-hover:blur-lg transition-all" />
-                <img
-                  src={experience.logo}
-                  alt={`${experience.company} logo`}
-                  className="relative w-20 h-20 rounded-full border-2 border-purple-300/80 bg-slate-950 object-contain p-1"
-                />
+      {/* Content Card */}
+      <div className="w-full md:w-1/2 group cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+          <div className="glass p-6 md:p-8 rounded-3xl border-white/10 bg-white/5 relative overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.1)] hover:bg-white/10 hover:-translate-y-1">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row gap-5 mb-4">
+              <div className="w-16 h-16 rounded-2xl bg-black/50 backdrop-blur-xl p-2.5 flex items-center justify-center border border-white/10 shadow-inner shrink-0">
+                <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" />
               </div>
-              <div>
-                <h3 className="mt-1 text-xl md:text-2xl font-semibold text-white">
-                  {experience.role}
-                </h3>
-                <h4 className="text-sm md:text-base text-purple-200/90">
-                  {experience.company}
-                </h4>
-                <div className="mt-2 flex flex-wrap gap-2 text-xs md:text-sm">
-                  <span className="rounded-full bg-purple-900/70 border border-purple-500/50 px-3 py-1 text-purple-100">
-                    {experience.period}
-                  </span>
-                  <span className="rounded-full bg-slate-900/80 border border-purple-500/40 px-3 py-1 text-purple-100">
-                    {experience.location}
-                  </span>
+              
+              <div className="flex-1 flex flex-col gap-1 min-w-0">
+                <h3 className="text-xl md:text-2xl font-bold text-white whitespace-nowrap truncate">{exp.role}</h3>
+                <h4 className="text-lg text-purple-300 font-medium">{exp.company}</h4>
+                <div className="flex items-center gap-2 text-sm text-gray-200 font-medium mt-1">
+                  <span>{exp.period}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                  <span>{exp.location}</span>
                 </div>
               </div>
             </div>
 
-            <motion.div
-              initial={{ rotate: 0 }}
-              animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="mt-1 shrink-0 rounded-full bg-purple-900/70 border border-purple-500/70 p-1"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-6 h-6 text-purple-200"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-            </motion.div>
-          </button>
+            {/* Collapsible Content */}
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+              <ul className="space-y-3 pl-1">
+                {exp.responsibilities.map((item, i) => (
+                  <li key={i} className="text-sm md:text-base text-gray-300/90 leading-relaxed flex gap-3">
+                    <span className="text-purple-500 mt-1">▹</span>
+                    <span className="group-hover:text-white transition-colors duration-300">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Expand/Collapse Indicator */}
+            <div className={`w-full flex items-center justify-center gap-2 text-[10px] text-gray-600 uppercase tracking-widest transition-all duration-300 ${isOpen ? 'mt-4' : 'mt-2'}`}>
+              {isOpen ? 'Show Less' : 'Click for Details'}
+            </div>
+          </div>
+      </div>
 
-          {/* Body */}
-          <motion.div
-            initial={false}
-            animate={{ height: "auto", opacity: 1 }}
-            transition={{ duration: 0.25 }}
-            className="mt-4"
-          >
-            <ul className="list-disc space-y-2 pl-5 text-purple-100 text-sm md:text-[0.9rem] leading-relaxed">
-              {visibleResponsibilities.map((task, idx) => (
-                <li key={idx}>{task}</li>
-              ))}
-            </ul>
-
-            {experience.responsibilities.length > 2 && (
-              <button
-                type="button"
-                onClick={() => setIsOpen((prev) => !prev)}
-                className="mt-3 inline-flex items-center gap-2 text-xs md:text-sm text-purple-200/90 hover:text-white transition-colors"
-              >
-                {isOpen ? "Show less" : "Show full story"}
-                <span className="h-px w-6 bg-purple-300/80" />
-              </button>
-            )}
-          </motion.div>
-        </div>
-      </motion.div>
-    </div>
+      {/* Spacer for the other side */}
+      <div className="hidden md:block w-1/2"></div>
+      
+    </motion.div>
   );
 };
 
 const Experience = () => {
   return (
-    <section
-      id="experience"
-      className="flex w-full flex-col items-center gap-12 p-4 md:px-14 md:py-20 mb-8"
-    >
-      <ScrollReveal>
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-xs tracking-[0.3em] uppercase text-purple-300/70">
-            Journey
-          </span>
-          <h1 className="text-4xl md:text-6xl font-light text-purple-100">
-            Experience
-          </h1>
-          <p className="max-w-xl text-center text-sm md:text-base text-purple-200/80">
-            A timeline of roles where I have designed systems, automated workflows,
-            and turned data into decisions.
-          </p>
-        </div>
-      </ScrollReveal>
+    <section id="experience" className="flex w-full flex-col items-center gap-12 py-20 relative">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center space-y-2"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+          Experience
+        </h2>
+        <p className="text-gray-400 max-w-lg mx-auto text-sm md:text-base">
+          My professional journey and contributions.
+        </p>
+      </motion.div>
 
-      <div className="relative w-full max-w-3xl md:max-w-4xl">
-        {/* Faint central timeline line */}
-        <div className="absolute left-[0.9rem] md:left-[1.05rem] top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/30 via-purple-900/40 to-transparent pointer-events-none" />
-
-        <div className="flex flex-col gap-10">
-          {experienceData.map((experience, index) => (
-            <ScrollReveal key={index}>
-              <ExperienceCard
-                experience={experience}
-                index={index}
-                isLast={index === experienceData.length - 1}
-                defaultOpen={index === 0}
-              />
-            </ScrollReveal>
-          ))}
-        </div>
+      <div className="relative flex flex-col gap-12 w-full max-w-[900px] px-4">
+        {/* Central Line */}
+        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-purple-500 to-transparent transfrom -translate-x-1/2 md:translate-x-0 hidden md:block"></div>
+        
+        {experienceData.map((exp, index) => (
+          <ExperienceCard key={index} exp={exp} index={index} />
+        ))}
       </div>
     </section>
   );
