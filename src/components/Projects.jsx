@@ -1,5 +1,6 @@
 import imagePool from "/pool-image.png";
 import Premierbet from "/Premierbet-image.png";
+import imageTripbuddy from "/tripbuddyLogo.png";
 
 import {
   BiLogoCss3,
