@@ -5,50 +5,54 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="flex min-h-[50vh] min-w-full items-center justify-center py-20 px-4"
+      className="flex min-h-[60vh] min-w-full items-center justify-center py-24 px-4 overflow-hidden"
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="glass w-full max-w-[600px] flex flex-col items-center justify-center gap-6 p-10 md:p-14 rounded-3xl border-white/10 bg-black/40 text-center relative overflow-hidden"
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full max-w-[800px] flex flex-col items-center justify-center gap-8 p-12 md:p-20 rounded-[3rem] bg-card border border-border premium-shadow text-center relative overflow-hidden group hover:scale-[1.01] transition-transform duration-700"
       >
-        {/* Background Gradients */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/20 blur-[80px] -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/20 blur-[80px] -z-10"></div>
+        {/* Subtle Decorative Accents (Earthy glow inside card) */}
+        <div className="absolute -top-32 -right-32 w-64 h-64 bg-accent/10 dark:bg-accent/5 rounded-full blur-[80px] pointer-events-none transition-all duration-1000 group-hover:scale-150"></div>
+        <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-primary/10 dark:bg-primary/5 rounded-full blur-[80px] pointer-events-none transition-all duration-1000 group-hover:scale-150"></div>
 
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent">
-          Get In Touch
+        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground relative z-10">
+          Ready to Connect?
         </h2>
 
-        <p className="text-lg text-gray-400 max-w-sm">
-          Want to connect? Send me an email and I'll respond as soon as possible.
+        <p className="text-lg text-foreground/70 max-w-md relative z-10">
+          Whether you have a question, a project in mind, or just want to say hi, my inbox is always open.
         </p>
 
-        <a
-          href="mailto:mdayoub@uoguelph.ca"
-          className="px-8 py-3 rounded-full bg-white text-black font-semibold text-lg hover:bg-gray-200 transition-all shadow-lg shadow-white/10 hover:shadow-white/20 hover:-translate-y-1"
+        <motion.a
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          href="mailto:majd.dayoub04@gmail.com"
+          className="px-10 py-4 mt-4 rounded-full bg-primary text-primary-foreground font-medium text-lg hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl relative z-10"
         >
-          Contact Me
-        </a>
+          Say Hello
+        </motion.a>
         
-        <div className="flex gap-6 mt-4">
+        <div className="flex gap-8 mt-8 relative z-10 pt-8 border-t border-border/50 w-full justify-center">
           <a
             href="https://www.linkedin.com/in/majddayoub"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-blue-500 transition-colors"
+            className="text-foreground/60 hover:text-primary transition-colors flex flex-col items-center gap-2 group/link"
           >
-            <BsLinkedin size={32} />
+            <BsLinkedin size={28} className="transition-transform group-hover/link:-translate-y-1" />
+            <span className="text-xs font-semibold opacity-0 group-hover/link:opacity-100 transition-opacity">LinkedIn</span>
           </a>
           <a
             href="https://github.com/Majd-Dayoub"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-purple-500 transition-colors"
+            className="text-foreground/60 hover:text-primary transition-colors flex flex-col items-center gap-2 group/link"
           >
-            <BsGithub size={32} />
+            <BsGithub size={28} className="transition-transform group-hover/link:-translate-y-1" />
+            <span className="text-xs font-semibold opacity-0 group-hover/link:opacity-100 transition-opacity">GitHub</span>
           </a>
         </div>
       </motion.div>

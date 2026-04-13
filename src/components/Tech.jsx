@@ -7,56 +7,106 @@ import {
 } from "react-icons/bi";
 import { TbBrandCSharp } from "react-icons/tb";
 import { FaDatabase } from "react-icons/fa";
+import { FiCode, FiCloud, FiDatabase } from "react-icons/fi";
 import { motion } from "motion/react";
 
 const Tech = () => {
-  const techItems = [
-    { icon: BiLogoNodejs, color: "text-green-500", label: "Node.js" },
-    { icon: BiLogoTypescript, color: "text-sky-500", label: "TypeScript" },
-    { icon: BiLogoPython, color: "text-yellow-400", label: "Python" },
-    { icon: BiLogoAws, color: "text-orange-400", label: "AWS" },
-    { icon: BiLogoMicrosoft, color: "text-blue-400", label: "Azure" },
-    { icon: FaDatabase, color: "text-orange-700", label: "SQL" },
-    { icon: TbBrandCSharp, color: "text-indigo-200", label: "C#" },
+  const techCategories = [
+    {
+      title: "Languages & Frameworks",
+      icon: FiCode,
+      description: "The semantic foundations and ecosystems I use to build scalable logic.",
+      colSpan: "md:col-span-2",
+      technologies: [
+        { icon: BiLogoTypescript, color: "text-[#675647]", label: "TypeScript" },
+        { icon: BiLogoPython, color: "text-[#E3BD98]", label: "Python" },
+        { icon: TbBrandCSharp, color: "text-[#675647]", label: "C#" },
+        { icon: BiLogoNodejs, color: "text-[#6C6E36]", label: "Node.js" },
+      ]
+    },
+    {
+      title: "Cloud Infrastructure",
+      icon: FiCloud,
+      description: "Enterprise ecosystems for reliable hosting and robust DevOps pipelines.",
+      colSpan: "md:col-span-1",
+      technologies: [
+        { icon: BiLogoMicrosoft, color: "text-[#6C6E36]", label: "Azure" },
+        { icon: BiLogoAws, color: "text-[#C8BDB0]", label: "AWS" },
+      ]
+    },
+    {
+      title: "Database Engineering",
+      icon: FiDatabase,
+      description: "Data modeling, integration, and high-performance storage solutions.",
+      colSpan: "md:col-span-3",
+      technologies: [
+        { icon: FaDatabase, color: "text-[#3E3B3B] dark:text-[#E3BD98]", label: "SQL & Relational Databases" },
+      ]
+    }
   ];
 
   return (
     <section
       id="tech"
-      className="flex min-h-[70vh] w-full flex-col items-center justify-center gap-12 py-20 relative"
+      className="flex min-h-[70vh] w-full flex-col items-center justify-center gap-16 py-24 relative px-4"
     >
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-center space-y-2"
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="text-center space-y-4"
       >
-        <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-200 to-gray-500 bg-clip-text text-transparent">
-          Technologies
+        <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-foreground">
+          Core Technologies
         </h2>
-        <p className="text-gray-400 max-w-lg mx-auto text-sm md:text-base">
-          My primary stack for building scalable applications.
+        <p className="text-foreground/70 max-w-lg mx-auto text-base">
+          A highly structured overview of the toolsets powering my engineering workflow.
         </p>
       </motion.div>
 
-      <div className="flex flex-wrap items-center justify-center gap-6 max-w-[1000px] px-4">
-        {techItems.map((tech, index) => {
-          const Icon = tech.icon;
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1000px]">
+        {techCategories.map((category, index) => {
+          const CategoryIcon = category.icon;
           return (
             <motion.div
-              key={tech.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.05 }}
-              className="glass p-6 w-32 h-32 md:w-36 md:h-36 rounded-2xl flex flex-col items-center justify-center gap-3 border-white/5 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all group cursor-default"
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className={`flex flex-col gap-6 p-8 rounded-[2.5rem] bg-card border border-border premium-shadow transition-colors hover:bg-background ${category.colSpan} group`}
             >
-              <Icon className={`text-5xl ${tech.color} drop-shadow-md transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]`} />
-              <span className="text-sm font-light text-gray-300 group-hover:text-white transition-colors">
-                {tech.label}
-              </span>
+              <div className="flex flex-col gap-3">
+                <div className="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center mb-2 premium-shadow text-primary group-hover:scale-110 transition-transform duration-500">
+                   <CategoryIcon size={24} />
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">
+                  {category.title}
+                </h3>
+                <p className="text-foreground/70 text-sm leading-relaxed max-w-sm">
+                  {category.description}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3 mt-auto pt-4">
+                {category.technologies.map((tech) => {
+                  const TechIcon = tech.icon;
+                  return (
+                    <motion.div
+                      key={tech.label}
+                      whileHover={{ y: -4, scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-background border border-border premium-shadow cursor-default group/tech hover:border-primary/40 transition-colors"
+                    >
+                      <TechIcon className={`text-2xl ${tech.color} transition-transform group-hover/tech:scale-110`} />
+                      <span className="text-sm font-medium text-foreground/90">
+                        {tech.label}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </motion.div>
           );
         })}

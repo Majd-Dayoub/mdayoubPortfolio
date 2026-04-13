@@ -71,31 +71,30 @@ const projectsData = [
 const ProjectCard = ({ project, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="flex flex-col md:flex-row gap-8 md:gap-12 items-center w-full"
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="flex flex-col md:flex-row gap-8 md:gap-12 items-center w-full group"
     >
       {/* Image Container - Always on left */}
-      <div className="w-full md:w-1/2 relative group">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/50 aspect-video shadow-2xl">
+      <div className="w-full md:w-1/2 relative overflow-hidden rounded-[2rem] border border-border premium-shadow group-hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] transition-all duration-700 bg-white dark:bg-black/40 flex items-center justify-center">
+        <div className="relative aspect-video sm:aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden flex items-center justify-center p-8 md:p-12">
           <img 
             src={project.image} 
             alt={project.title} 
-            className="w-full h-full object-cover md:object-contain bg-slate-900/50 transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-contain filter drop-shadow-sm transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-110"
           />
         </div>
       </div>
 
       {/* Content Container */}
-      <div className="w-full md:w-1/2 flex flex-col items-start gap-4">
-        <h3 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <div className="w-full md:w-1/2 flex flex-col items-start gap-5">
+        <h3 className="text-3xl font-bold tracking-tight text-foreground">
           {project.title}
         </h3>
         
-        <p className="text-gray-400 leading-relaxed text-base font-light border-l-2 border-purple-500 pl-4">
+        <p className="text-foreground/70 leading-relaxed text-base">
           {project.description}
         </p>
 
@@ -103,23 +102,24 @@ const ProjectCard = ({ project, index }) => {
            {project.technologies.map((tech, i) => {
              const Icon = project.icons[i];
              return (
-               <span key={i} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300 font-mono tracking-wider hover:bg-white/10 transition-colors cursor-default">
-                 {Icon && <Icon className="text-purple-400" />}
+               <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background border border-border text-xs text-foreground/80 font-medium tracking-wide transition-colors group-hover:border-primary/30">
+                 {Icon && <Icon className="text-primary text-sm" />}
                  {tech}
                </span>
              );
            })}
         </div>
 
-        <div className="flex gap-4 mt-2">
+        <div className="flex gap-6 mt-2">
           {project.liveDemo && (
-             <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors">
-               Visit Site <span className="text-xl">↗</span>
+             <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-primary font-medium border-b border-primary/30 pb-0.5 hover:border-primary transition-all">
+               Visit Site <span className="text-lg leading-none">↗</span>
              </a>
           )}
           {project.repository && (
-             <a href={project.repository} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white border-b border-gray-500 pb-1 hover:text-gray-300 transition-colors">
-               GitHub <BsGithub />
+             <a href={project.repository} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-foreground/70 font-medium hover:text-primary transition-colors">
+               <BsGithub size={20} />
+               <span>Source Code</span>
              </a>
           )}
         </div>
@@ -130,23 +130,23 @@ const ProjectCard = ({ project, index }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="flex min-h-screen w-full flex-col items-center gap-20 py-24 px-4 relative">
+    <section id="projects" className="flex min-h-screen w-full flex-col items-center gap-16 py-24 px-4 relative">
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="text-center space-y-4"
       >
-        <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent pb-2">
-          My Projects
+        <h2 className="text-4xl md:text-5xl font-semibold tracking-tighter text-foreground pb-2">
+          Projects
         </h2>
-        <p className="text-gray-300 max-w-lg mx-auto text-base md:text-lg font-light">
-          A showcase of challenges solved and products built.
+        <p className="text-foreground/70 max-w-lg mx-auto text-base">
+          A showcase of challenges solved and platforms built.
         </p>
       </motion.div>
 
-      <div className="flex flex-col gap-12 w-full max-w-[1000px]">
+      <div className="flex flex-col gap-20 w-full max-w-[1000px] mt-8">
         {projectsData.map((project, index) => (
           <ProjectCard key={index} project={project} index={index} />
         ))}

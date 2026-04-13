@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import "./index.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -8,12 +9,26 @@ import Experience from "./components/Experience";
 import MouseBackground from "./components/MouseBackground";
 
 function App() {
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
   return (
     <>
-      <MouseBackground />
+      <MouseBackground theme={theme} />
 
       <main className="flex flex-col items-center px-4 md:px-10 lg:px-20 max-w-7xl mx-auto overflow-x-hidden selection:bg-primary selection:text-white">
-        <Navbar />
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
         <Hero />
         <Tech />
         <div className="w-full my-20">
