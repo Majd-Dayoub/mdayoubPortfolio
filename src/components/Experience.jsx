@@ -7,6 +7,7 @@ const experienceData = [
   {
     company: "Co-operators Insurance",
     logo: cooperatorsLogo,
+    website: "https://www.cooperators.ca",
     role: "Cloud Engineer Co-op",
     period: "January 2026 – Present",
     location: "Toronto, Canada",
@@ -19,6 +20,7 @@ const experienceData = [
   {
     company: "Purolator Inc.",
     logo: purolatorLogo,
+    website: "https://www.purolator.com",
     role: "Data Engineer Co-op",
     period: "May 2025 – August 2025",
     location: "Toronto, Canada",
@@ -32,6 +34,7 @@ const experienceData = [
   {
     company: "Mitsubishi Heavy Industries Aerospace Inc.",
     logo: mhicaLogo,
+    website: "https://www.mhi.com",
     role: "Software Engineer Co-op",
     period: "May 2024 – December 2024",
     location: "Toronto, Canada",
@@ -52,7 +55,7 @@ const ExperienceCard = ({ exp, index }) => {
         // Dynamic top spacing to create the overlapping deck effect
         top: `calc(15vh + ${index * 2.5}rem)`,
         zIndex: index,
-        paddingBottom: "4rem" // Provides scroll padding between cards
+        paddingBottom: "4rem", // Provides scroll padding between cards
       }}
     >
       <motion.div
@@ -63,10 +66,15 @@ const ExperienceCard = ({ exp, index }) => {
         className="w-full bg-card rounded-[2.5rem] p-8 md:p-12 border border-border shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] transition-transform duration-500 hover:scale-[1.01]"
       >
         <div className="flex flex-col gap-8 md:gap-10">
-          
           {/* Header Row */}
           <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between border-b border-border/50 pb-8">
-            <div className="flex items-center gap-6">
+            <a
+              href={exp.website}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-6 group"
+              aria-label={`Visit ${exp.company} website`}
+            >
               <div className="w-20 h-20 md:w-24 md:h-24 rounded-[1.5rem] bg-white p-3 flex items-center justify-center shadow-sm shrink-0 border border-black/5 dark:border-white/10 premium-shadow">
                 <img
                   src={exp.logo}
@@ -83,11 +91,11 @@ const ExperienceCard = ({ exp, index }) => {
                   {exp.company}
                 </h4>
               </div>
-            </div>
+            </a>
 
             <div className="flex flex-col md:items-end text-sm md:text-base text-foreground/60 font-medium">
               <span className="px-4 py-1.5 rounded-full bg-background border border-border">
-                  {exp.period}
+                {exp.period}
               </span>
               <span className="mt-2 text-foreground/50">{exp.location}</span>
             </div>
@@ -106,7 +114,6 @@ const ExperienceCard = ({ exp, index }) => {
               ))}
             </ul>
           </div>
-
         </div>
       </motion.div>
     </div>
@@ -120,7 +127,6 @@ const Experience = () => {
       className="flex w-full flex-col items-center py-32 px-4 relative"
     >
       <div className="w-full max-w-[1000px]">
-        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,7 +148,6 @@ const Experience = () => {
             <ExperienceCard key={index} exp={exp} index={index} />
           ))}
         </div>
-
       </div>
     </section>
   );
